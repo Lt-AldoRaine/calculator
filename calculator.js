@@ -14,12 +14,13 @@ operation.forEach(button => {
     button.addEventListener('click', e => {
         operator = button.dataset.operation
         operated = true;
+        display.innerText = ''
         console.log(operator)
-    }, {once: true})
+    })
 })
 
 function add(firstNum, secondNum) {
-    return firstNum + secondNum
+    return parseInt(firstNum) + parseInt(secondNum)
 }
 
 function subtract(firstNum, secondNum) {
@@ -34,14 +35,29 @@ function divide(firstNum, secondNum) {
     return firstNum / secondNum
 }
 
-
+function displayNum() {
+    numbers.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!operated) {
+                display.innerText += button.dataset.numbers
+                firstNum = display.innerText
+                console.log(`first num = ${firstNum}`)
+            } 
+            if (operated) {
+                display.innerText += button.dataset.numbers
+                secondNum = display.innerText
+                console.log(`second num = ${secondNum}`)
+            }
+        })
+    })
+}
 
 function operate(firstNum, operator, ...secondNum) {
     if (operator === 'add') {
         return add(firstNum, secondNum)
     }
     if (operator === 'subtract') {
-        return add(firstNum, secondNum)
+        return subtract(firstNum, secondNum)
     }
     if (operator === 'multiply') {
         return multiply(firstNum, secondNum)
@@ -50,6 +66,4 @@ function operate(firstNum, operator, ...secondNum) {
         return divide(firstNum, secondNum)
     }
 }
-
-
 
