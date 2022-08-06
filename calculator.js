@@ -8,7 +8,6 @@ let firstNum;
 let secondNum;
 let operator;
 let isOperated = false;
-let isCalculated = false;
 let result;
 
 operation.forEach(button => {
@@ -34,6 +33,15 @@ function multiply(firstNum, secondNum) {
 
 function divide(firstNum, secondNum) {
     return firstNum / secondNum
+}
+
+
+
+const clear = () => {
+    allClear.addEventListener('click', () => {
+        display.innerText = ''
+        isOperated = false
+    })
 }
 
 function displayNum() {
@@ -68,6 +76,8 @@ function operate(firstNum, operator, ...secondNum) {
     }
 }
 
+
+
 equals.addEventListener('click', () => {
     if (isOperated) {
         display.innerText = ''
@@ -76,7 +86,7 @@ equals.addEventListener('click', () => {
         console.log(result)
         display.innerText = result
     } else return 0
-    isCalculated = true
 })
 
 displayNum()
+clear()
