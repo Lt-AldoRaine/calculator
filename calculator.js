@@ -3,18 +3,21 @@ const numbers = document.querySelectorAll('[data-numbers]')
 const equals = document.querySelector('[data-equals]')
 const allClear = document.querySelector('[data-all-clear]')
 const display = document.querySelector('.current')
+const prevDisplay = document.querySelector('.previous')
 
 let firstNum;
 let secondNum;
 let operator;
 let isOperated = false;
 let result;
+let calculated = false;
 
 operation.forEach(button => {
     button.addEventListener('click', e => {
         operator = button.dataset.operations
         isOperated = true;
         display.innerText = ''
+        prevDisplay.innerText = `${firstNum} ${operator}`
         console.log(operator)
     })
 })
@@ -34,8 +37,6 @@ function multiply(firstNum, secondNum) {
 function divide(firstNum, secondNum) {
     return firstNum / secondNum
 }
-
-
 
 const clear = () => {
     allClear.addEventListener('click', () => {
@@ -62,16 +63,16 @@ function displayNum() {
 }
 
 function operate(firstNum, operator, ...secondNum) {
-    if (operator === 'add') {
+    if (operator === '+') {
         return add(firstNum, secondNum)
     }
-    if (operator === 'subtract') {
+    if (operator === '-') {
         return subtract(firstNum, secondNum)
     }
-    if (operator === 'multiply') {
+    if (operator === '*') {
         return multiply(firstNum, secondNum)
     }
-    if (operator === 'divide') {
+    if (operator === '/') {
         return divide(firstNum, secondNum)
     }
 }
@@ -81,11 +82,13 @@ function operate(firstNum, operator, ...secondNum) {
 equals.addEventListener('click', () => {
     if (isOperated) {
         display.innerText = ''
+        prevDisplay.innerText = `${firstNum} ${operator} ${secondNum}`
         result = operate(firstNum, operator, secondNum)
         firstNum = result
         console.log(result)
         display.innerText = result
     } else return 0
+    calculated = true;
 })
 
 displayNum()
