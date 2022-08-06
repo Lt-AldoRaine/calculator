@@ -8,11 +8,12 @@ let firstNum;
 let secondNum;
 let operator;
 let isOperated = false;
-let calculated = false;
+let isCalculated = false;
+let result;
 
 operation.forEach(button => {
     button.addEventListener('click', e => {
-        operator = button.dataset.operation
+        operator = button.dataset.operations
         isOperated = true;
         display.innerText = ''
         console.log(operator)
@@ -68,16 +69,14 @@ function operate(firstNum, operator, ...secondNum) {
 }
 
 equals.addEventListener('click', () => {
-    if (!isOperated) {
-        return 0;
-    } else {
+    if (isOperated) {
         display.innerText = ''
-        let result = operate(firstNum, operator, secondNum)
+        result = operate(firstNum, operator, secondNum)
+        firstNum = result
         console.log(result)
-        operated = false
         display.innerText = result
-    }
-    
+    } else return 0
+    isCalculated = true
 })
 
 displayNum()
