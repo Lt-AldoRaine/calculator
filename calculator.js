@@ -67,3 +67,18 @@ function operate(firstNum, operator, ...secondNum) {
     }
 }
 
+equals.addEventListener('click', () => {
+    if (!operator) {
+        return 0;
+    } else {
+        display.innerText = ''
+        let result = operate(firstNum, operator, secondNum)
+        console.log(result)
+        operated = false
+        display.innerText = result
+    }
+    
+})
+
+displayNum()
+clear()
