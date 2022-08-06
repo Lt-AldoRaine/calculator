@@ -34,21 +34,7 @@ function divide(firstNum, secondNum) {
     return firstNum / secondNum
 }
 
-function displayNum() {
-    numbers.forEach(button => {
-        button.addEventListener('click', () => {
-            if (operated === false) {
-                firstNum = parseInt(display.innerText += button.innerText)
-                console.log(`first num = ${firstNum}`)
-            } 
-            if (operated === true) {
-                display.textContent = ''
-                secondNum = parseInt(display.innerText += button.innerText)
-                console.log(`second num = ${secondNum}`)
-            }
-        })
-    })
-}
+
 
 function operate(firstNum, operator, ...secondNum) {
     if (operator === 'add') {
@@ -65,14 +51,5 @@ function operate(firstNum, operator, ...secondNum) {
     }
 }
 
-equals.addEventListener('click', () => {
-    if (calculated === false) {
-        let result = operate(firstNum, operator, secondNum)
-        console.log(result)
-        display.innerText = result;
-        operated = false
-        calculated === true
-    } else display.innerText = ''
-})
 
-displayNum()
+
